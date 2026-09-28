@@ -13,8 +13,8 @@ export default function HomePage() {
             <h1>A clearer way to reach Tebelopele care.</h1>
             <p className="hero__lead">Find services, trustworthy health information and a real person to help you take the next step.</p>
             <div className="hero__actions">
-              <Link className="button button--primary button--large" href="/sign-in">Access client services <ArrowRight size={19}/></Link>
-              <a className="text-link" href="#services">Explore services</a>
+            <Link className="button button--primary button--large" href="/sign-in">Access client services <ArrowRight size={19}/></Link>
+              <Link className="text-link" href="/services">Explore services</Link>
             </div>
             <p className="trust-note"><ShieldCheck size={18} aria-hidden="true"/> Your information is handled with care and protected access.</p>
           </div>
@@ -34,8 +34,8 @@ export default function HomePage() {
             <p>These pathways will grow as each service phase is approved and connected.</p>
           </div>
           <div className="service-links">
-            <Link href="/sign-in"><span>01</span><strong>Appointments</strong><small>Book and manage visits</small><ArrowRight/></Link>
-            <Link href="/sign-in"><span>02</span><strong>Health information</strong><small>Read approved guidance</small><ArrowRight/></Link>
+            <Link href="/services"><span>01</span><strong>Services</strong><small>Find the right place to start</small><ArrowRight/></Link>
+            <Link href="/health"><span>02</span><strong>Health information</strong><small>Read approved guidance</small><ArrowRight/></Link>
             <Link href="/sign-in"><span>03</span><strong>Human support</strong><small>Continue with the right expert</small><ArrowRight/></Link>
           </div>
         </section>

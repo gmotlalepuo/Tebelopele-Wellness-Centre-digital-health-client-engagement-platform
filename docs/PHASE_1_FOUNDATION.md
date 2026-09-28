@@ -17,6 +17,8 @@
 3. Start Docker Desktop, then run `npx supabase start` and `npx supabase db reset` for the local database.
 4. Run `npm run dev` and open `http://localhost:3000`.
 
+Set `TEBELOPELE_PREVIEW_MODE=1` only for local interface review when you want to render clearly labelled sample public content without contacting the configured Supabase project.
+
 Supabase email sign-up is disabled in `supabase/config.toml`. Create clients through the future onboarding flow and staff through the future invitation workflow. For local development, users may be created through Supabase Studio, then assigned a seeded role with an administrator-owned SQL operation.
 
 ## Verification

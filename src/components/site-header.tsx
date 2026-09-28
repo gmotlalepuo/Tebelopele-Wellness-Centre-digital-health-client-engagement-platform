@@ -8,9 +8,10 @@ export function SiteHeader() {
       <div className="site-header__inner">
         <Link href="/" aria-label="Tebelopele home"><BrandLogo compact /></Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="/#services">Services</Link>
-          <Link href="/#locations">Locations</Link>
-          <Link href="/#support">Get support</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/locations">Locations</Link>
+          <Link href="/health">Health information</Link>
+          <Link href="/faqs">FAQs</Link>
         </nav>
         <div className="header-actions">
           <Link className="button button--quiet" href="/sign-in">Sign in</Link>
@@ -21,9 +22,10 @@ export function SiteHeader() {
         <details className="mobile-menu">
           <summary aria-label="Open menu"><Menu className="menu-open"/><X className="menu-close"/></summary>
           <nav aria-label="Mobile navigation">
-            <Link href="/#services">Services</Link>
-            <Link href="/#locations">Locations</Link>
-            <Link href="/#support">Get support</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/locations">Locations</Link>
+            <Link href="/health">Health information</Link>
+            <Link href="/faqs">FAQs</Link>
             <Link href="/sign-in">Sign in</Link>
           </nav>
         </details>

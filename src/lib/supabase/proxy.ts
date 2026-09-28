@@ -3,6 +3,9 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getPublicEnvironment } from "@/lib/env";
 
 export async function updateSession(request: NextRequest) {
+  if (process.env.NODE_ENV !== "production" && process.env.TEBELOPELE_PREVIEW_MODE === "1") {
+    return NextResponse.next({ request });
+  }
   const environment = getPublicEnvironment();
   if (!environment) return NextResponse.next({ request });
 

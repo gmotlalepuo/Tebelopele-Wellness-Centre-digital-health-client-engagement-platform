@@ -1,19 +1,21 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { CalendarDays, Home, LifeBuoy, UserRound } from "lucide-react";
+import { BellRing, Home, LifeBuoy, ShieldCheck, UserRound } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { signOut } from "@/app/auth/actions";
 
 const links = [
   { label: "Overview", href: "/client", icon: Home },
-  { label: "Appointments", href: "/client#appointments", icon: CalendarDays },
-  { label: "My profile", href: "/client#profile", icon: UserRound },
+  { label: "My profile", href: "/client/profile", icon: UserRound },
+  { label: "Preferences", href: "/client/preferences", icon: BellRing },
+  { label: "Consent", href: "/client/consent", icon: ShieldCheck },
   { label: "Get support", href: "/client#support", icon: LifeBuoy },
 ];
 
 export function AppShell({ children, name }: { children: ReactNode; name: string }) {
   return (
     <div className="app-frame">
+      <a className="skip-link" href="#client-main">Skip to main content</a>
       <aside className="app-sidebar">
         <Link href="/" aria-label="Tebelopele home"><BrandLogo compact /></Link>
         <nav aria-label="Client portal">
@@ -28,7 +30,7 @@ export function AppShell({ children, name }: { children: ReactNode; name: string
           <span>Client portal</span>
           <span className="user-chip"><span aria-hidden="true">{name.slice(0, 1).toUpperCase()}</span>{name}</span>
         </header>
-        <main>{children}</main>
+        <main id="client-main" tabIndex={-1}>{children}</main>
       </div>
     </div>
   );

@@ -1,22 +1,20 @@
-import { CalendarDays, ChevronRight, CircleCheck, HeartHandshake, MapPin } from "lucide-react";
-import { AppShell } from "@/components/app-shell";
-import { createClient } from "@/lib/supabase/server";
+import { CalendarDays, ChevronRight, CircleCheck, HeartHandshake, MapPin, UserRound } from "lucide-react";
+import Link from "next/link";
+import { getClientContext } from "@/lib/client-data";
 
 export default async function ClientHome() {
-  const supabase = await createClient();
-  const { data } = supabase ? await supabase.auth.getClaims() : { data: null };
-  const name = String(data?.claims?.user_metadata?.display_name ?? data?.claims?.email ?? "Client");
+  const client = await getClientContext();
+  const name = client.preferredName || client.displayName;
 
   return (
-    <AppShell name={name}>
       <div className="portal-page">
-        <div className="portal-heading"><div><p className="welcome-line">Client overview</p><h1>Hello, {name.split("@")[0]}</h1><p>Your secure Tebelopele services will appear here as each approved phase goes live.</p></div><span className="status-label"><CircleCheck size={16}/> Account connected</span></div>
-        <section className="next-action" id="appointments"><div><CalendarDays size={28}/><div><h2>Your next appointment</h2><p>No appointment is scheduled. Appointment booking arrives in Phase 3.</p></div></div><button className="button button--quiet" disabled>Book later</button></section>
+        <div className="portal-heading"><div><p className="welcome-line">Client overview</p><h1>Hello, {name.split("@")[0]}</h1><p>Manage your profile, communication choices and consent from one secure place.</p></div>{client.configured ? <span className="status-label"><CircleCheck size={16}/> Account connected</span> : <span className="status-label status-label--preview">Preview mode</span>}</div>
+        {!client.configured && <div className="preview-notice"><strong>Local preview</strong><span>Connect Supabase to save client information and enforce authenticated access.</span></div>}
+        <section className="next-action" id="appointments"><div><CalendarDays size={28}/><div><h2>Your next appointment</h2><p>No appointment is scheduled. Appointment booking is implemented in Phase 3.</p></div></div><button className="button button--quiet" disabled>Booking coming next</button></section>
         <div className="portal-columns">
-          <section><h2>Quick access</h2><div className="action-list"><button disabled><MapPin/><span><strong>Find a facility</strong><small>Service directory arrives in Phase 2</small></span><ChevronRight/></button><button disabled><HeartHandshake/><span><strong>Talk to a person</strong><small>Human support arrives in Phase 6</small></span><ChevronRight/></button></div></section>
-          <section className="foundation-note"><h2>What is available now</h2><p>Your authenticated account foundation and protected portal are active. No clinical or appointment data is shown until those workflows are implemented and approved.</p></section>
+          <section><h2>Quick access</h2><div className="action-list"><Link href="/locations"><MapPin/><span><strong>Find a facility</strong><small>View published locations and services</small></span><ChevronRight/></Link><Link href="/client/profile"><UserRound/><span><strong>Review your profile</strong><small>Keep your permitted details current</small></span><ChevronRight/></Link><button disabled id="support"><HeartHandshake/><span><strong>Talk to a person</strong><small>Human support arrives in Phase 6</small></span><ChevronRight/></button></div></section>
+          <section className="foundation-note"><h2>Your choices matter</h2><p>Communication permissions and consent are recorded separately so you can review or change them without altering unrelated profile information.</p><Link className="text-link" href="/client/preferences">Review communication choices</Link></section>
         </div>
       </div>
-    </AppShell>
   );
 }

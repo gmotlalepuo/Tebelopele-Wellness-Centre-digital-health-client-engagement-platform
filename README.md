@@ -8,4 +8,6 @@ Start with [the implementation plan](docs/IMPLEMENTATION_PLAN.md), [architecture
 
 Phase 1 application and database foundations are documented in [the Phase 1 guide](docs/PHASE_1_FOUNDATION.md). Use `npm ci`, configure `.env.local` from `.env.example`, and run `npm run dev`. Quality checks are `npm run lint`, `npm run typecheck`, `npm test` and `npm run build`.
 
+Phase 2 public directories, health information, search, client profile/preferences and versioned consent are documented in [the Phase 2 guide](docs/PHASE_2_CLIENT_EXPERIENCE.md).
+
 Source baselines: `TEBELOPELE_AI_Digital_Health_System_Requirements.md` and `Content Management, Knowledge Base, FAQ and Chatbot Handover`, supplied with the project brief. User decisions override illustrative options in those documents.
