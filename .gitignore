@@ -14,3 +14,4 @@ output/
 supabase/.temp/
 
 .vercel
+.test-accounts.local.json

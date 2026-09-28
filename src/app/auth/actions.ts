@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { destinationForCapabilities } from "@/lib/access";
+import { getApplicationMemberships } from "@/lib/application-memberships";
 
 function safeNext(value: FormDataEntryValue | null) {
   return typeof value === "string" && value.startsWith("/") && !value.startsWith("//")
@@ -23,6 +24,12 @@ export async function signIn(formData: FormData) {
     const query = requestedDestination ? `&next=${encodeURIComponent(requestedDestination)}` : "";
     redirect(`/sign-in?error=credentials${query}`);
   }
+
+  const {data:claims}=await supabase.auth.getClaims();
+  const userId=String(claims?.claims?.sub??"");
+  const applications=userId?await getApplicationMemberships(userId):[];
+  if(applications.length>1)redirect("/choose-application");
+  if(applications.length===1&&applications[0].id!=="tebelopele")redirect("/choose-application");
 
   const { data: profile } = await supabase
     .from("tebelopele_profiles")
