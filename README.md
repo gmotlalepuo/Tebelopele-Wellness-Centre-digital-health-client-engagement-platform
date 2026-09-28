@@ -6,4 +6,6 @@ The agreed direction is a responsive Next.js application backed by Supabase Auth
 
 Start with [the implementation plan](docs/IMPLEMENTATION_PLAN.md), [architecture](docs/ARCHITECTURE.md), [data and permissions](docs/DATA_AND_ACCESS.md), [integration contracts](docs/INTEGRATION_CONTRACTS.md), and [open decisions](docs/DECISIONS.md). These are Phase 0 working artifacts, not evidence that services have been deployed or integrations connected.
 
+Phase 1 application and database foundations are documented in [the Phase 1 guide](docs/PHASE_1_FOUNDATION.md). Use `npm ci`, configure `.env.local` from `.env.example`, and run `npm run dev`. Quality checks are `npm run lint`, `npm run typecheck`, `npm test` and `npm run build`.
+
 Source baselines: `TEBELOPELE_AI_Digital_Health_System_Requirements.md` and `Content Management, Knowledge Base, FAQ and Chatbot Handover`, supplied with the project brief. User decisions override illustrative options in those documents.
