@@ -11,7 +11,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
       <div id="main-content" tabIndex={-1}>{children}</div>
       <footer className="public-footer">
         <div><strong>Tebelopele Wellness Centre</strong><p>A secure digital route to information, services and support.</p></div>
-        <nav aria-label="Footer navigation"><Link href="/services">Services</Link><Link href="/locations">Locations</Link><Link href="/health">Health information</Link><Link href="/faqs">FAQs</Link></nav>
+        <nav aria-label="Footer navigation"><Link href="/services">Services</Link><Link href="/locations">Locations</Link><Link href="/health">Health information</Link><Link href="/faqs">FAQs</Link><Link href="/privacy">Privacy</Link></nav>
         <form action="/search" role="search"><label htmlFor="footer-search">Search this site</label><div><input id="footer-search" name="q" type="search"/><button aria-label="Search"><Search size={18}/></button></div></form>
       </footer>
     </>
