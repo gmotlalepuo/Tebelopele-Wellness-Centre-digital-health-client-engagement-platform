@@ -1,13 +1,15 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BellRing, Home, LifeBuoy, ShieldCheck, UserRound } from "lucide-react";
+import { BellRing, CalendarDays, Home, LifeBuoy, Settings2, ShieldCheck, UserRound } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { signOut } from "@/app/auth/actions";
 
 const links = [
   { label: "Overview", href: "/client", icon: Home },
+  { label: "Appointments", href: "/client/appointments", icon: CalendarDays },
+  { label: "Notifications", href: "/client/notifications", icon: BellRing },
   { label: "My profile", href: "/client/profile", icon: UserRound },
-  { label: "Preferences", href: "/client/preferences", icon: BellRing },
+  { label: "Preferences", href: "/client/preferences", icon: Settings2 },
   { label: "Consent", href: "/client/consent", icon: ShieldCheck },
   { label: "Get support", href: "/client#support", icon: LifeBuoy },
 ];

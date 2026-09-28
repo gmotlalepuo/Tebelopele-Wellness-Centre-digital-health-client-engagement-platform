@@ -105,3 +105,25 @@ where id = '40000000-0000-4000-8000-000000000001';
 insert into public.tebelopele_consent_versions (id, consent_type, version_number, title, summary, full_text, effective_at) values
   ('50000000-0000-4000-8000-000000000001', 'digital_service', 1, 'Demonstration digital-service consent', 'Local-development consent used to verify accept, decline and withdrawal events.', 'This wording is not approved production consent. It exists only for local workflow testing and must be replaced following Tebelopele legal and privacy review.', now())
 on conflict (consent_type, version_number) do update set title = excluded.title, summary = excluded.summary, full_text = excluded.full_text;
+
+insert into public.tebelopele_notification_templates(slug,channel,locale,subject_template,body_template) values
+ ('appointment-confirmed','in_app','en',null,'Your appointment is confirmed for {{starts_at}} at {{facility_name}}.'),
+ ('appointment-reminder','in_app','en',null,'Reminder: your appointment is at {{starts_at}} at {{facility_name}}.'),
+ ('appointment-reminder','whatsapp','en',null,'Tebelopele reminder: your appointment is at {{starts_at}}. Reply HELP if you need assistance.')
+on conflict(slug,channel,locale) do update set body_template=excluded.body_template;
+
+insert into public.tebelopele_appointment_slots(service_id,facility_id,starts_at,ends_at,capacity)
+select s.id,f.id,'2026-10-06 08:30:00+02','2026-10-06 09:00:00+02',1
+from public.tebelopele_services s cross join public.tebelopele_facilities f
+where s.slug='demonstration-wellness-navigation' and f.slug='gaborone-demonstration-facility'
+on conflict(service_id,facility_id,starts_at) do nothing;
+
+insert into public.tebelopele_content_tags(slug,name) values ('hiv','HIV'),('wellness','Wellness'),('prevention','Prevention') on conflict(slug) do nothing;
+
+insert into public.tebelopele_role_capabilities(role_id,capability_id)
+select r.id,c.id from public.tebelopele_roles r join public.tebelopele_capabilities c on
+ (r.slug='reception_officer' and c.slug in ('appointments.manage','appointments.notes','notifications.manage')) or
+ (r.slug='content_editor' and c.slug in ('content.author','knowledge.manage')) or
+ (r.slug='content_reviewer' and c.slug in ('content.author','content.review','content.publish','knowledge.manage')) or
+ (r.slug='system_administrator')
+on conflict do nothing;
