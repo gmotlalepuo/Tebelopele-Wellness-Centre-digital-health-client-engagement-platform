@@ -39,6 +39,22 @@ select r.id, c.id from public.tebelopele_roles r join public.tebelopele_capabili
   (r.slug = 'system_administrator')
 on conflict do nothing;
 
+insert into public.tebelopele_whatsapp_flow_versions(version_number,status,definition,published_at)
+values(1,'published',jsonb_build_object('start_node','main_menu','options',jsonb_build_array(
+ jsonb_build_object('id','services','label','Services'),jsonb_build_object('id','facilities','label','Facilities and hours'),
+ jsonb_build_object('id','appointments','label','Appointments'),jsonb_build_object('id','health_information','label','Health information'),
+ jsonb_build_object('id','profile','label','My profile and preferences','requires_verification',true),jsonb_build_object('id','privacy','label','Privacy and consent'),
+ jsonb_build_object('id','helplines','label','Helplines'),jsonb_build_object('id','human','label','Talk to a person'))),now())
+on conflict(version_number) do update set definition=excluded.definition,status=excluded.status,published_at=excluded.published_at;
+
+insert into public.tebelopele_role_capabilities(role_id,capability_id)
+select r.id,c.id from public.tebelopele_roles r join public.tebelopele_capabilities c on
+ (r.slug='support_agent' and c.slug in ('support.handle','support.notes')) or
+ (r.slug='health_worker' and c.slug in ('support.handle','support.notes')) or
+ (r.slug='content_reviewer' and c.slug='ai.monitor') or
+ (r.slug='system_administrator')
+on conflict do nothing;
+
 insert into public.tebelopele_skills (slug, name, description) values
   ('general_navigation', 'General service navigation', 'Guide clients to appropriate Tebelopele services'),
   ('appointment_support', 'Appointment support', 'Help with booking and appointment administration'),

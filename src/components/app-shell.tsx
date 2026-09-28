@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BellRing, CalendarDays, Home, LifeBuoy, Settings2, ShieldCheck, UserRound } from "lucide-react";
+import { BellRing, Bot, CalendarDays, Home, LifeBuoy, Settings2, ShieldCheck, UserRound } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { signOut } from "@/app/auth/actions";
 
@@ -8,6 +8,7 @@ const links = [
   { label: "Overview", href: "/client", icon: Home },
   { label: "Appointments", href: "/client/appointments", icon: CalendarDays },
   { label: "Notifications", href: "/client/notifications", icon: BellRing },
+  { label: "Ask Tebelopele", href: "/client/chat", icon: Bot },
   { label: "My profile", href: "/client/profile", icon: UserRound },
   { label: "Preferences", href: "/client/preferences", icon: Settings2 },
   { label: "Consent", href: "/client/consent", icon: ShieldCheck },

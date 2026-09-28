@@ -12,4 +12,6 @@ Phase 2 public directories, health information, search, client profile/preferenc
 
 Phase 3 appointment and notification workflows are documented in [the Phase 3 guide](docs/PHASE_3_APPOINTMENTS_NOTIFICATIONS.md). Phase 4 content governance and knowledge retrieval are documented in [the Phase 4 guide](docs/PHASE_4_GOVERNED_KNOWLEDGE.md).
 
+Phase 5 grounded AI chat is documented in [the Phase 5 guide](docs/PHASE_5_AI_WEB_CHAT.md). Phase 6 skill-routed human support and WhatsApp are documented in [the Phase 6 guide](docs/PHASE_6_SUPPORT_WHATSAPP.md).
+
 Source baselines: `TEBELOPELE_AI_Digital_Health_System_Requirements.md` and `Content Management, Knowledge Base, FAQ and Chatbot Handover`, supplied with the project brief. User decisions override illustrative options in those documents.

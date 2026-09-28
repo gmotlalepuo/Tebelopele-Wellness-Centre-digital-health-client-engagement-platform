@@ -1,0 +1,3 @@
+import {describe,expect,it} from "vitest";import {mainMenu,resolveMenu,validWebhookSignature} from "./whatsapp";import {createHmac} from "node:crypto";
+describe("WhatsApp adapter",()=>{it("uses stable option IDs and blocks private profile disclosure",()=>{expect(mainMenu.options.map(o=>o.id)).toContain("profile");expect(resolveMenu("profile").node).toBe("identity_required")});it("resets on menu commands",()=>expect(resolveMenu("0").node).toBe("main_menu"));it("validates exact webhook signatures",()=>{const body="payload",secret="test-secret",sig=createHmac("sha256",secret).update(body).digest("hex");expect(validWebhookSignature(body,`sha256=${sig}`,secret)).toBe(true);expect(validWebhookSignature(body,"sha256=bad",secret)).toBe(false)})});
+
