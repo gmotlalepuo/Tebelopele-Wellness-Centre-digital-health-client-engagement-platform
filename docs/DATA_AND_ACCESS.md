@@ -1,6 +1,6 @@
 # Data model and access plan
 
-The source guide illustrates a `council_` table prefix. That appears unrelated to Tebelopele and remains an open naming decision. This plan uses logical names; migration filenames and physical table names are fixed in Phase 1 after that decision. Supabase `auth.users` remains managed by Supabase and is not duplicated.
+All application-owned public-schema tables use the approved `tebelopele_` prefix. Supabase-managed tables such as `auth.users` retain their platform names and are not duplicated. Database functions, storage policies and migrations should follow the same Tebelopele naming convention where applicable.
 
 | Domain | Main logical entities | Relationship and rule |
 | --- | --- | --- |
