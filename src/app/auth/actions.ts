@@ -34,6 +34,7 @@ export async function signIn(formData: FormData) {
   const { data: profile } = await supabase
     .from("tebelopele_profiles")
     .select("account_status")
+    .eq("id", userId)
     .single();
   if (profile?.account_status !== "active") {
     await supabase.auth.signOut();

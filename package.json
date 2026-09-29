@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "seed:superuser": "node --env-file=.env.local scripts/create-demo-superuser.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "latest",

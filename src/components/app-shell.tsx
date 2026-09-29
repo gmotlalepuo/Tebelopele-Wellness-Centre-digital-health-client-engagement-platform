@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { BellRing, Bot, CalendarDays, Home, LifeBuoy, Settings2, ShieldCheck, UserRound } from "lucide-react";
 import { BrandLogo } from "@/components/brand-logo";
 import { signOut } from "@/app/auth/actions";
+import { RoleSwitcher } from "@/components/role-switcher";
+import type { RoleSlug } from "@/lib/roles";
 
 const links = [
   { label: "Overview", href: "/client", icon: Home },
@@ -15,7 +17,7 @@ const links = [
   { label: "Get support", href: "/client#support", icon: LifeBuoy },
 ];
 
-export function AppShell({ children, name }: { children: ReactNode; name: string }) {
+export function AppShell({ children, name, activeRole, assignedRoles }: { children: ReactNode; name: string; activeRole: RoleSlug; assignedRoles: RoleSlug[] }) {
   return (
     <div className="app-frame">
       <a className="skip-link" href="#client-main">Skip to main content</a>
@@ -31,7 +33,7 @@ export function AppShell({ children, name }: { children: ReactNode; name: string
       <div className="app-content">
         <header className="app-topbar">
           <span>Client portal</span>
-          <span className="user-chip"><span aria-hidden="true">{name.slice(0, 1).toUpperCase()}</span>{name}</span>
+          <div className="app-topbar__account"><RoleSwitcher activeRole={activeRole} assignedRoles={assignedRoles}/><span className="user-chip"><span aria-hidden="true">{name.slice(0, 1).toUpperCase()}</span>{name}</span></div>
         </header>
         <main id="client-main" tabIndex={-1}>{children}</main>
       </div>
