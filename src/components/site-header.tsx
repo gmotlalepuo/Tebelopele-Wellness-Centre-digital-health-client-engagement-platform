@@ -12,6 +12,7 @@ export function SiteHeader() {
           <Link href="/locations">Locations</Link>
           <Link href="/health">Health information</Link>
           <Link href="/faqs">FAQs</Link>
+          <Link href="/demo">Platform demo</Link>
         </nav>
         <div className="header-actions">
           <Link className="button button--quiet" href="/sign-in">Sign in</Link>
@@ -26,6 +27,7 @@ export function SiteHeader() {
             <Link href="/locations">Locations</Link>
             <Link href="/health">Health information</Link>
             <Link href="/faqs">FAQs</Link>
+            <Link href="/demo">Platform demo</Link>
             <Link href="/sign-in">Sign in</Link>
           </nav>
         </details>

@@ -14,7 +14,7 @@ export default function HomePage() {
             <p className="hero__lead">Find services, trustworthy health information and a real person to help you take the next step.</p>
             <div className="hero__actions">
             <Link className="button button--primary button--large" href="/sign-in">Access client services <ArrowRight size={19}/></Link>
-              <Link className="text-link" href="/services">Explore services</Link>
+              <Link className="text-link" href="/demo">Try the platform demo</Link>
             </div>
             <p className="trust-note"><ShieldCheck size={18} aria-hidden="true"/> Your information is handled with care and protected access.</p>
           </div>
@@ -50,11 +50,11 @@ export default function HomePage() {
 
         <section className="support-banner" id="support">
           <HeartHandshake size={34} aria-hidden="true"/>
-          <div><h2>Need help choosing where to start?</h2><p>Sign in to reach the secure client area. Human support will be added in the dedicated support phase.</p></div>
+          <div><h2>Need help choosing where to start?</h2><p>Open the Tebelopele assistant for approved guidance, or sign in and ask for an eligible human expert.</p></div>
           <Link className="button button--light" href="/sign-in">Continue securely</Link>
         </section>
       </main>
-      <footer className="site-footer"><p>© 2026 Tebelopele Wellness Centre</p><p>Digital service foundation · Phase 1</p></footer>
+      <footer className="site-footer"><p>© 2026 Tebelopele Wellness Centre</p><p>Secure digital health platform · Implementation preview</p></footer>
     </>
   );
 }

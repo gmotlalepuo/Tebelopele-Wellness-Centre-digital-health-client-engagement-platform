@@ -1,0 +1,3 @@
+import type {Metadata} from "next"; import {PublicShell} from "@/components/public-shell"; import {DemoExperience} from "@/components/demo-experience";
+export const metadata:Metadata={title:"Interactive platform demo",description:"Explore Tebelopele client, AI support and staff workflows without using a real account."};
+export default function DemoPage(){return <PublicShell><main className="demo-page"><header className="demo-intro"><p className="welcome-line">Explore before signing in</p><h1>See one connected care journey.</h1><p>This guided demonstration walks through the platform without creating appointments, conversations or client records.</p></header><DemoExperience/></main></PublicShell>}
