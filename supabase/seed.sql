@@ -91,6 +91,25 @@ select f.id, s.id from public.tebelopele_facilities f cross join public.tebelope
 where f.code = 'DEMO-GABORONE' and s.slug like 'demonstration-%'
 on conflict do nothing;
 
+-- The original Phase 2 records above remain as regression fixtures but must not
+-- appear as live directory or booking data. Botswana-based public records and
+-- rolling appointment availability are installed by migration
+-- 20261007000100_botswana_client_journeys.sql.
+update public.tebelopele_facilities
+set is_active = false, published_at = null
+where code = 'DEMO-GABORONE';
+
+update public.tebelopele_services
+set is_active = false, published_at = null
+where slug like 'demonstration-%';
+
+update public.tebelopele_appointment_slots slot
+set status = 'closed'
+where exists (
+  select 1 from public.tebelopele_services service
+  where service.id = slot.service_id and service.slug like 'demonstration-%'
+);
+
 insert into public.tebelopele_content_categories (id, slug, name, description) values
   ('20000000-0000-4000-8000-000000000001', 'using-services', 'Using services', 'Development category for service-navigation content'),
   ('20000000-0000-4000-8000-000000000002', 'privacy-support', 'Privacy and support', 'Development category for privacy and support content')
@@ -143,3 +162,10 @@ select r.id,c.id from public.tebelopele_roles r join public.tebelopele_capabilit
  (r.slug='content_reviewer' and c.slug in ('content.author','content.review','content.publish','knowledge.manage')) or
  (r.slug='system_administrator')
 on conflict do nothing;
+
+update public.tebelopele_appointment_slots slot
+set status = 'closed'
+where exists (
+  select 1 from public.tebelopele_services service
+  where service.id = slot.service_id and service.slug like 'demonstration-%'
+);

@@ -37,9 +37,9 @@ const accounts=[
   {email:"tebelopele.demo.reviewer@example.com",name:"Demo Content Reviewer",role:"content_reviewer",job:"Content reviewer",skills:["content_guidance"]},
   {email:"tebelopele.demo.reporting@example.com",name:"Demo Reporting User",role:"reporting_user",job:"Reporting officer",skills:[]},
   {email:"tebelopele.demo.auditor@example.com",name:"Demo Auditor",role:"auditor",job:"Auditor",skills:[]},
-  {email:"tebelopele.demo.client1@example.com",name:"Naledi Demo",role:"client",preferredName:"Naledi",sharedWith:["epayment"]},
-  {email:"tebelopele.demo.client2@example.com",name:"Kagiso Demo",role:"client",preferredName:"Kagiso"},
-  {email:"tebelopele.demo.client3@example.com",name:"Lorato Demo",role:"client",preferredName:"Lorato"},
+  {email:"tebelopele.demo.client1@example.com",name:"Naledi Moagi",surname:"Moagi",role:"client",preferredName:"Naledi",sharedWith:["epayment"]},
+  {email:"tebelopele.demo.client2@example.com",name:"Kagiso Molefe",surname:"Molefe",role:"client",preferredName:"Kagiso"},
+  {email:"tebelopele.demo.client3@example.com",name:"Lorato Kgosi",surname:"Kgosi",role:"client",preferredName:"Lorato"},
 ];
 
 function password(){return `Tb!${randomBytes(12).toString("base64url")}9a`}
@@ -67,7 +67,7 @@ for(const account of accounts){
   if(account.role==="client"){
     await must(supabase.from("tebelopele_clients").upsert({user_id:user.user.id,preferred_name:account.preferredName},{onConflict:"user_id"}),`client ${account.email}`);
     await must(supabase.from("tebelopele_client_preferences").upsert({client_user_id:user.user.id,preferred_language:"en",preferred_channel:"in_app"},{onConflict:"client_user_id"}),`preferences ${account.email}`);
-    if(account.sharedWith?.includes("epayment"))await must(supabase.from("users").upsert({id:user.user.id,email:account.email,first_name:account.preferredName,last_name:"Demo",phone_number:null,role:"customer",password_hash:""},{onConflict:"id"}),`shared ePayment membership ${account.email}`);
+    if(account.sharedWith?.includes("epayment"))await must(supabase.from("users").upsert({id:user.user.id,email:account.email,first_name:account.preferredName,last_name:account.surname,phone_number:null,role:"customer",password_hash:""},{onConflict:"id"}),`shared ePayment membership ${account.email}`);
   }else{
     await must(supabase.from("tebelopele_staff_profiles").upsert({user_id:user.user.id,staff_number:`DEMO-${String(accounts.indexOf(account)+1).padStart(3,"0")}`,job_title:account.job,availability:"available",languages:["en"],max_active_cases:5,is_accepting_cases:account.role==="support_agent"},{onConflict:"user_id"}),`staff ${account.email}`);
     await must(supabase.from("tebelopele_staff_skills").delete().eq("staff_user_id",user.user.id),`clear skills ${account.email}`);

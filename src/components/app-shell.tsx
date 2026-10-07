@@ -14,7 +14,7 @@ const links = [
   { label: "My profile", href: "/client/profile", icon: UserRound },
   { label: "Preferences", href: "/client/preferences", icon: Settings2 },
   { label: "Consent", href: "/client/consent", icon: ShieldCheck },
-  { label: "Get support", href: "/client#support", icon: LifeBuoy },
+  { label: "Get support", href: "/client/support", icon: LifeBuoy },
 ];
 
 export function AppShell({ children, name, activeRole, assignedRoles }: { children: ReactNode; name: string; activeRole: RoleSlug; assignedRoles: RoleSlug[] }) {
